@@ -40,7 +40,7 @@ class DonationCampaignsController < ApplicationController
 
   private
     def campaign_params
-      params.expect(donation_campaign: [ :title, :goal, :bonus_goal, :description, :featured_image  ])
+      params.expect(donation_campaign: [ :title, :goal, :bonus_goal, :short_description, :description, :featured_image  ])
     end
 
     def set_campaign

@@ -8,3 +8,399 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+
+.donation-container {
+  width: 100%;
+  margin: 24px auto;
+  padding: 24px;
+  font-family: system-ui, -apple-system, sans-serif;
+  box-sizing: border-box;
+}
+
+/* Header Alignment */
+.donation-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 16px;
+}
+
+.amount-raised {
+  font-size: 2.25rem;
+  font-weight: 900;
+  color: #047857; /* Emerald Green */
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.currency-symbol {
+  font-size: 1.875rem;
+  font-weight: 700;
+}
+
+.percentage-label {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #059669;
+}
+
+/* Progress Bar Stack track layout */
+.progress-track {
+  position: relative;
+  width: 100%;
+  height: 20px;
+  background-color: #e5e7eb; /* Light Gray */
+  border-radius: 9999px;
+  margin-bottom: 24px;
+}
+
+/* Core dynamic bars configuration */
+.progress-fill {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  transition: width 0.5s ease;
+}
+
+.core-fill {
+  right: 0;
+  background-color: #059669; /* Emerald Green */
+  border-radius: 9999px;
+}
+
+.bonus-fill {
+  background-color: #9333ea; /* Purple */
+  border-top-left-radius: 9999px;
+  border-bottom-left-radius: 9999px;
+}
+
+/* Floating Indicator Pin */
+.heart-pin {
+  position: absolute;
+  top: 50%;
+  transform: translate(50%, -50%); /* Centers the emoji perfectly on the line */
+  font-size: 1.5rem;
+  z-index: 10;
+  transition: right 0.5s ease;
+}
+
+/* Footer Label Grid */
+.donation-footer {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.text-right { text-align: right; }
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+
+.highlight-green { color: #059669; }
+.highlight-purple { color: #9333ea; }
+
+
+
+.campaign-hero-container {
+  width: 100%;
+  max-width: 850px;
+  display: flex;
+  justify-content: center;
+  margin: 32px auto;
+  font-family: system-ui, -apple-system, sans-serif;
+  box-sizing: border-box;
+}
+
+.campaign-hero-content {
+  width: 100%;
+  display: flex;
+  justify-content: space-between; /* Pushes button left and text right */
+  align-items: center; /* Aligns items perfectly in the vertical center */
+  padding: 0 16px;
+  gap: 24px;
+}
+
+/* Right Text Side configuration */
+.hero-text-pane {
+  text-align: right;
+  flex: 1;
+}
+
+/* Left Button Side configuration */
+.hero-action-pane {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  min-width: 280px; /* Keeps the button prominent */
+}
+
+/* Match the exact purple button aesthetic from your screenshot */
+.btn-donate-primary {
+  display: block;
+  width: 100%;
+  text-align: center;
+  background-color: #c026d3; /* Vibrant Fuchsia/Purple */
+  color: #ffffff;
+  font-size: 1.25rem;
+  font-weight: 700;
+  padding: 14px 28px;
+  border-radius: 9999px; /* Complete pill-shape rounding */
+  text-decoration: none; /* Removes link underline */
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+/* Hover & Active Feedback Effects */
+.btn-donate-primary:hover {
+  background-color: #a21caf; /* Slightly darker purple on hover */
+}
+
+.btn-donate-primary:active {
+  transform: scale(0.98); /* Snappy physical click animation */
+}
+
+/* Dark translucent ambient background overlay wrapper */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Modal Window Layout Dimensions */
+.modal-card {
+  background: #ffffff;
+  width: 100%;
+  max-width: 520px;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  box-sizing: border-box;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+}
+
+.modal-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  padding-left: 30%;
+}
+
+.modal-close-btn {
+  background: none;
+  border: none;
+  font-size: 1.25rem;
+  cursor: pointer;
+  color: #9ca3af;
+}
+
+/* Grids alignment tracking code structure layouts */
+.amount-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.amount-btn {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  padding: 12px;
+  border-radius: 6px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #c026d3; /* Fallback text color */
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: all 0.2s ease;
+}
+
+.amount-btn.selected {
+  background-color: #c026d3; /* Completely filled purple when selected */
+  color: #ffffff;
+}
+
+.amount-btn small {
+  font-size: 0.75rem;
+  color: #6b7280;
+  font-weight: 400;
+  margin-top: 2px;
+}
+
+.active-custom {
+  background-color: #c026d3;
+  color: #ffffff !important;
+}
+
+/* Form input elements */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+}
+
+.form-group label {
+  font-weight: 700;
+  margin-bottom: 6px;
+  font-size: 0.95rem;
+}
+
+.form-group input {
+  padding: 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+.amount-input-wrapper input {
+  border-color: #b91c1c; /* Crimson focus alerting layout matching look */
+  text-align: left;
+  font-size: 1.25rem;
+}
+
+/* Submit row button block adjustments */
+.modal-footer {
+  margin-top: 24px;
+}
+
+.btn-submit-donation {
+  width: 100%;
+  background-color: #e8bcf0; /* Default desaturated state matching your image bottom strip */
+  color: #c026d3;
+  border: none;
+  padding: 14px;
+  border-radius: 9999px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.btn-submit-donation:hover {
+  background-color: #c026d3;
+  color: #ffffff;
+}
+
+.custom-preset-btn {
+  color: #1f2937; /* Starts grey/black until selected */
+  justify-content: center; /* Vertically centers text since it has no small subtitle */
+}
+
+.custom-preset-btn.selected {
+  background-color: #c026d3; /* Completely filled purple when selected */
+  color: #ffffff;
+}
+
+/* Textarea styling for the comment input */
+.form-group textarea {
+  padding: 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-family: system-ui, -apple-system, sans-serif;
+  resize: vertical; /* Allows users to drag it taller if needed */
+}
+
+.form-group textarea:focus {
+  border-color: #c026d3; /* Glow purple when typing */
+  outline: none;
+}
+
+
+/* Tabs */
+/* Container wrap context */
+.tabs-container {
+  width: 100%;
+  margin-top: 40px;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+/* Horizontal navigation center constraints */
+.tabs-nav-wrapper {
+  width: 100%;
+  border-bottom: 1px solid #e5e7eb; /* Thin layout baseline line separator */
+  display: flex;
+  justify-content: center; /* Centers the whole row of tabs on the page */
+}
+
+.tabs-nav {
+  display: flex;
+  gap: 32px; /* Uniform horizontal spacing between links */
+  max-width: 850px;
+  width: 100%;
+  padding: 0 16px;
+}
+
+/* Individual tab button configuration elements */
+.tab-link {
+  background: none;
+  border: none;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #4b5563; /* Slate grey default look */
+  padding: 12px 4px;
+  cursor: pointer;
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+.tab-link:hover {
+  color: #111827; /* Darker tone on desktop hover */
+}
+
+/* Active purple underline state matching your screenshot */
+.tab-link.active {
+  color: #c026d3; /* Vibrant Purple */
+}
+
+.tab-link.active::after {
+  content: "";
+  position: absolute;
+  bottom: -1px; /* Blends flawlessly right over the container's bottom boundary */
+  left: 0;
+  width: 100%;
+  height: 3px; /* Distinct indicator accent thickness */
+  background-color: #c026d3;
+  border-radius: 9999px;
+}
+
+/* Tab Panels Content layout adjustments */
+.tabs-content-wrapper {
+  max-width: 850px;
+  margin: 0 auto;
+  padding: 24px 16px;
+}
+
+.tab-content {
+  display: none; /* Keep items completely hidden by default */
+  width: 100%;
+}
+
+.tab-content.active {
+  display: block; /* Reveal exclusively when toggled active */
+}
+
+/* Action Text Render Body Adjustments */
+.rich-text-description {
+  text-align: right; /* Explicit layout right-alignment override for Hebrew */
+  color: #1f2937;
+  line-height: 1.7;
+  font-size: 1.15rem;
+}
+

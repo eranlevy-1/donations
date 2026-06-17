@@ -1,13 +1,112 @@
-<h1><%= @campaign.title %></h1>
 <%= image_tag @campaign.featured_image if @campaign.featured_image.attached? %>
-<h3>Total Raised So Far: <%= @campaign.total_raised %>₪</h3>
-<h3># of donors: <%= @campaign.num_payments %></h3>
-<div>
-    Goal: <%= @campaign.goal %>
+
+<div class="flash-messages-wrapper" dir="rtl" style="max-width: 850px; margin: 16px auto; font-family: sans-serif;">
+
+  <% if flash[:notice] %>
+    <div class="flash-banner alert-success">
+      <div class="flash-icon">✓</div>
+      <div class="flash-text"><%= flash[:notice] %></div>
+    </div>
+  <% end %>
+
+  <% if flash[:alert] %>
+    <div class="flash-banner alert-danger">
+      <div class="flash-icon">✕</div>
+      <div class="flash-text"><%= flash[:alert] %></div>
+    </div>
+  <% end %>
 </div>
-<div>
-    Bonus Goal: <%= @campaign.bonus_goal %>
+
+<div class="donation-container" dir="rtl">
+  
+  <div class="donation-header">
+    <div class="amount-raised">
+      <span class="currency-symbol">₪</span>
+      <span><%= number_with_delimiter(@campaign.total_raised) %></span>
+    </div>
+    <div class="percentage-label">
+      <%= @campaign.core_progress_percentage %>% גויס
+    </div>
+  </div>
+
+  <div class="progress-track">
+    
+    <div class="progress-fill core-fill" 
+         style="width: <%= [@campaign.total_progress_percentage, 40].min %>%;">
+    </div>
+
+    <% if @campaign.total_raised > @campaign.goal %>
+      <div class="progress-fill bonus-fill" 
+           style="right: 40%; width: <%= @campaign.total_progress_percentage - 40 %>%;">
+      </div>
+    <% end %>
+
+    <div class="heart-pin" style="right: <%= @campaign.total_progress_percentage %>%;">
+      🧡
+    </div>
+  </div>
+
+  <div class="donation-footer">
+    <div class="footer-item text-right">
+      מספר תורמים: <span class="highlight-green"><%= number_with_delimiter(@campaign.contributor_count) %></span>
+    </div>
+    <div class="footer-item text-center">
+      יעד: <span class="highlight-green">₪<%= number_with_delimiter(@campaign.goal) %></span>
+    </div>
+    <div class="footer-item text-left">
+      יעד בונוס: <span class="highlight-purple">₪<%= number_with_delimiter(@campaign.bonus_goal) %></span>
+    </div>
+  </div>
+
 </div>
-<%= @campaign.description %>
+
+<div class="campaign-hero-container" dir="rtl">
+  <div class="campaign-hero-content">    
+    <div class="hero-text-pane">
+      <%= @campaign.short_description %>
+    </div>
+    <div class="hero-action-pane">
+      <%= link_to "לתרומה", "#", class: "btn-donate-primary", onclick: "openDonationModal(event)" %>
+    </div>
+  </div>
+</div>
+
+<%= render "donation_modal", campaign: @campaign %>
+
+<div class="tabs-container" dir="rtl">
+  
+  <div class="tabs-nav-wrapper">
+    <div class="tabs-nav">
+      <button class="tab-link active" onclick="switchTab(event, 'about-project')">על הפרויקט</button>
+      <button class="tab-link" onclick="switchTab(event, 'recent-donations')">תרומות אחרונות</button>
+      <button class="tab-link" onclick="switchTab(event, 'ambassadors')">לוח שגרירים</button>
+      <button class="tab-link" onclick="switchTab(event, 'groups')">קבוצות</button>
+      <button class="tab-link" onclick="switchTab(event, 'about-association')">על העמותה</button>
+      <button class="tab-link" onclick="switchTab(event, 'updates')">עדכונים</button>
+    </div>
+  </div>
+
+  <div class="tabs-content-wrapper">
+    
+    <div id="about-project" class="tab-content active">
+      <div class="rich-text-description">
+        <%= @campaign.description %>
+      </div>
+    </div>
+
+    <div id="recent-donations" class="tab-content">
+      </div>
+
+    <div id="ambassadors" class="tab-content"></div>
+
+    <div id="groups" class="tab-content"></div>
+
+    <div id="about-association" class="tab-content"></div>
+
+    <div id="updates" class="tab-content"></div>
+
+  </div>
+
+</div>
 
 <%= link_to "Back", donation_campaigns_path %>
