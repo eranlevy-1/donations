@@ -1,6 +1,5 @@
-# README
+# Donation Campaign demo - Eran Levy
 
-* Eran Levy
 * Donation campaign demo page - a Ruby on Rails application.
 
 To run locally:
