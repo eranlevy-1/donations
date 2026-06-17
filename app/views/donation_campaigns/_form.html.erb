@@ -1,0 +1,24 @@
+<%= form_with model: campaign do |form| %>
+    <% if form.object.errors.any? %>
+        <p class="error"><%= form.object.errors.full_messages.first %></p>
+    <% end %>
+
+    <div>
+        <%= form.label :title %>
+        <%= form.text_field :title %>
+    </div>
+
+    <div>
+        <%= form.label :goal, "Target Goal Amount ($)" %>
+        <%= form.number_field :goal, min: 1, step: 1, placeholder: "e.g. 5000" %>
+    </div>  
+
+    <div>
+        <%= form.label :goal, "Bonus Goal Amount ($)" %>
+        <%= form.number_field :bonus_goal, min: 1, step: 1, placeholder: "e.g. 5000" %>
+    </div>  
+    
+    <div>
+        <%= form.submit %>
+    </div>
+<% end %>

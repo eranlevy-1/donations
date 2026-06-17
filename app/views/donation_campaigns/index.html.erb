@@ -1,0 +1,12 @@
+<h1>Donation Campaigns</h1>
+
+<%= link_to "New donation campaign", new_donation_campaign_path %>
+
+<div id="campaigns">
+  <% @campaigns.each do |campaign| %>
+    <div>
+        <%= link_to campaign.title, donation_campaign_path(campaign.id) %>
+        <%= link_to "Edit", edit_donation_campaign_path(campaign) %>
+    </div>
+  <% end %>
+</div>
