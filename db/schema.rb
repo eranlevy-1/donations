@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_06_17_080727) do
+ActiveRecord::Schema[8.1].define(version: 2026_06_17_085743) do
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.text "body"
     t.datetime "created_at", null: false
@@ -57,6 +57,16 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_17_080727) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "payments", force: :cascade do |t|
+    t.integer "amount"
+    t.datetime "created_at", null: false
+    t.integer "donation_campaign_id", null: false
+    t.string "name"
+    t.datetime "updated_at", null: false
+    t.index ["donation_campaign_id"], name: "index_payments_on_donation_campaign_id"
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "payments", "donation_campaigns"
 end
