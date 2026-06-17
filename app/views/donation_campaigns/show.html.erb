@@ -94,9 +94,47 @@
       </div>
     </div>
 
-    <div id="recent-donations" class="tab-content">
-      </div>
+  <div id="recent-donations" class="tab-content">
+    <% if @payments.any? %>
+      <div class="donations-card-grid" dir="rtl">
+        <% @payments.each do |payment| %>
+          <div class="donation-card">
+            
+            <div class="card-header-row">
+              <span class="donation-time">
+                לפני <%= time_ago_in_words(payment.created_at) %>
+              </span>
+              <span class="donation-card-amount">
+                ₪<%= number_with_delimiter(payment.amount) %>
+              </span>
+            </div>
 
+            <div class="card-body-row">
+              <h4 class="donor-name">
+                <%= payment.name.presence || "תורם אנונימי" %>
+              </h4>
+            </div>
+
+            <div class="card-footer-row">
+              <div class="footer-left-icons">
+                <span class="heart-icon-outline">🤍</span>
+              </div>
+              
+              <% if payment.comment.present? %>
+                <div class="footer-right-comment">
+                  <span class="comment-text-bubble"><%= payment.comment %></span>
+                  <span class="comment-icon">💬</span>
+                </div>
+              <% end %>
+            </div>
+
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <p class="empty-donations-text">היה הראשון לתרום לקמפיין זה!</p>
+    <% end %>
+    </div>
     <div id="ambassadors" class="tab-content"></div>
 
     <div id="groups" class="tab-content"></div>

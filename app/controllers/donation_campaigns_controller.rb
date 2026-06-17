@@ -6,6 +6,7 @@ class DonationCampaignsController < ApplicationController
   end
 
   def show
+    @payments = @campaign.payments.order(created_at: :desc)
   end
 
   def new
