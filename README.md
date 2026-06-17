@@ -32,6 +32,7 @@ Enhacements for the app, with more time:
 - Having a list of payment amount to choose from for each campaign - currently it's "hard coded" (180, 360...).
 - Handle currency.
 - A page to track payment processing.
-- Authentication.
+- Authentication
 - A page that shows all the user's payments
+- Proper validation and error messages
 - And many more...
