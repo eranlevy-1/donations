@@ -1,3 +1,11 @@
 <h1><%= @campaign.title %></h1>
+<%= image_tag @campaign.featured_image if @campaign.featured_image.attached? %>
+<div>
+    Goal: <%= @campaign.goal %>
+</div>
+<div>
+    Bonus Goal: <%= @campaign.bonus_goal %>
+</div>
+<%= @campaign.description %>
 
 <%= link_to "Back", donation_campaigns_path %>

@@ -1,10 +1,11 @@
 class DonationCampaignsController < ApplicationController
+  before_action :set_campaign, only: %i[ show edit update destroy ]
+
   def index
     @campaigns = DonationCampaign.all
   end
 
   def show
-    @campaign = DonationCampaign.find(params[:id])
   end
 
   def new
@@ -21,7 +22,6 @@ class DonationCampaignsController < ApplicationController
   end
 
   def edit
-    @campaign = DonationCampaign.find(params[:id])
   end
 
   def update
@@ -33,8 +33,18 @@ class DonationCampaignsController < ApplicationController
     end
   end
 
+  def destroy
+    @campaign.destroy
+    redirect_to donation_campaigns_path
+  end
+
   private
     def campaign_params
-      params.expect(donation_campaign: [ :title, :goal, :bonus_goal ])
-    end  
+      params.expect(donation_campaign: [ :title, :goal, :bonus_goal, :description, :featured_image  ])
+    end
+
+    def set_campaign
+      @campaign = DonationCampaign.find(params[:id])
+    end
+    
 end

@@ -7,6 +7,7 @@
     <div>
         <%= link_to campaign.title, donation_campaign_path(campaign.id) %>
         <%= link_to "Edit", edit_donation_campaign_path(campaign) %>
+        <%= button_to "Delete", campaign, method: :delete, data: { turbo_confirm: "Are you sure?" } %>        
     </div>
   <% end %>
 </div>
